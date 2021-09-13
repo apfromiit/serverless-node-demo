@@ -22,12 +22,14 @@ service: serverless-node-demo
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs20.x
   region: us-west-2
   memorySize: 128
-
-httpApi:
-  cors: true
+  timeout: 30
+  apiGateway:
+    shouldStartNameWithService: true
+  httpApi:
+    cors: true
 
 # you can overwrite defaults here
 #  stage: dev
@@ -78,7 +80,7 @@ functions:
           request:
             parameters:
               paths:
-              name: true
+                name: true
   hello3:
     handler: handler.hello3
     events:
